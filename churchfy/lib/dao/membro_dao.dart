@@ -22,7 +22,6 @@ class MembroDao {
   static const String telefone = "telefone";
   static const String estadoCivil = "estado_civil";
   static const String naturalidade = "naturalidade";
-  static const String natural = "natural";
   static const String nacionalidade = "nacionalidade";
   static const String conjuge = "conjuge";
   static const String numeroFilhos = "numero_filhos";
@@ -48,7 +47,6 @@ class MembroDao {
       "$telefone TEXT, "
       "$estadoCivil TEXT, "
       "$naturalidade TEXT, "
-      "$natural TEXT, "
       "$nacionalidade TEXT, "
       "$conjuge TEXT, "
       "$numeroFilhos INTEGER, "
@@ -83,12 +81,11 @@ class MembroDao {
           $telefone, 
           $estadoCivil, 
           $naturalidade, 
-          $natural, 
           $nacionalidade, 
           $conjuge, 
           $numeroFilhos, 
           $igrejaProcedencia
-        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ) VALUES (?,?,?,?,?,?,"ativo",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
      ''', [
       membro.nome,
       membro.nomePai,
@@ -96,7 +93,6 @@ class MembroDao {
       membro.dataNascimento,
       membro.dataBatismo,
       membro.membroDesde,
-      membro.membroStatus,
       membro.cargo,
       membro.profissao,
       membro.endereco,
@@ -108,7 +104,6 @@ class MembroDao {
       membro.telefone,
       membro.estadoCivil,
       membro.naturalidade,
-      membro.natural,
       membro.nacionalidade,
       membro.conjuge,
       membro.numeroFilhos,
@@ -148,7 +143,6 @@ class MembroDao {
     $telefone = ?,
     $estadoCivil = ?,
     $naturalidade = ?,
-    $natural = ?,
     $nacionalidade = ?,
     $conjuge = ?,
     $numeroFilhos = ?,
@@ -173,7 +167,6 @@ class MembroDao {
       membro.telefone,
       membro.estadoCivil,
       membro.naturalidade,
-      membro.natural,
       membro.nacionalidade,
       membro.conjuge,
       membro.numeroFilhos,

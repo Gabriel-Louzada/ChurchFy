@@ -6,7 +6,7 @@ class MembroModel {
   String dataNascimento;
   String dataBatismo;
   String membroDesde;
-  String membroStatus;
+  String? membroStatus;
   String cargo;
   String profissao;
   String endereco;
@@ -18,9 +18,8 @@ class MembroModel {
   String telefone;
   String estadoCivil;
   String naturalidade;
-  String natural;
   String nacionalidade;
-  String conjuge;
+  String? conjuge;
   int? numeroFilhos;
   String igrejaProcedencia;
 
@@ -32,7 +31,7 @@ class MembroModel {
       required this.dataNascimento,
       required this.dataBatismo,
       required this.membroDesde,
-      required this.membroStatus,
+      this.membroStatus,
       required this.cargo,
       required this.profissao,
       required this.endereco,
@@ -44,9 +43,8 @@ class MembroModel {
       required this.telefone,
       required this.estadoCivil,
       required this.naturalidade,
-      required this.natural,
       required this.nacionalidade,
-      required this.conjuge,
+      this.conjuge,
       this.numeroFilhos,
       required this.igrejaProcedencia});
 
@@ -69,7 +67,6 @@ class MembroModel {
       'telefone': telefone,
       'estadoCivil': estadoCivil,
       'naturalidade': naturalidade,
-      'natural': natural,
       'nacionalidade': nacionalidade,
       'conjuge': conjuge,
       'igrejaProcedencia': igrejaProcedencia,
@@ -97,7 +94,6 @@ class MembroModel {
       telefone: map['telefone'],
       estadoCivil: map['estadoCivil'],
       naturalidade: map['naturalidade'],
-      natural: map['natural'],
       nacionalidade: map['nacionalidade'],
       conjuge: map['conjuge'],
       igrejaProcedencia: map['igrejaProcedencia'],
@@ -106,6 +102,6 @@ class MembroModel {
 
   @override
   String toString() {
-    return 'MembroModel(id: $id, nome: $nome, nomePai: $nomePai, nomeMae: $nomeMae, dataNascimento: $dataNascimento, dataBatismo: $dataBatismo, membroDesde: $membroDesde, membroStatus: $membroStatus, cargo: $cargo, profissao: $profissao, endereco: $endereco, numeroCasa: $numeroCasa, bairro: $bairro, cidade: $cidade, estado: $estado, obersevacao: $obersevacao, telefone: $telefone, estadoCivil: $estadoCivil, naturalidade: $naturalidade, natural: $natural, nacionalidade: $nacionalidade, conjuge: $conjuge, numeroFilhos: $numeroFilhos, igrejaProcedencia: $igrejaProcedencia)';
+    return 'MembroModel(id: $id, nome: $nome, nomePai: $nomePai, nomeMae: $nomeMae, dataNascimento: $dataNascimento, dataBatismo: $dataBatismo, membroDesde: $membroDesde, membroStatus: $membroStatus, cargo: $cargo, profissao: $profissao, endereco: $endereco, numeroCasa: $numeroCasa, bairro: $bairro, cidade: $cidade, estado: $estado, obersevacao: $obersevacao, telefone: $telefone, estadoCivil: $estadoCivil, naturalidade: $naturalidade, nacionalidade: $nacionalidade, conjuge: $conjuge, numeroFilhos: $numeroFilhos, igrejaProcedencia: $igrejaProcedencia)';
   }
 }
