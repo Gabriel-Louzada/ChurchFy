@@ -8,8 +8,6 @@ class MembroProvider extends ChangeNotifier {
 
   void carregarMembros() {
     _membros = MembroDao().selectMembros();
-    print("Membros dentro do provider");
-    print(_membros);
     notifyListeners();
   }
 

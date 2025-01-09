@@ -564,7 +564,7 @@ class TelaCadastro extends StatelessWidget {
                           conjuge: conjuge,
                           nacionalidade: nacionalidade,
                           numeroFilhos: int.parse(numeroFilhos),
-                          obersevacao: observacao,
+                          observacao: observacao,
                           igrejaProcedencia: igrejaProcedencia);
 
                       Provider.of<MembroProvider>(context, listen: false)
