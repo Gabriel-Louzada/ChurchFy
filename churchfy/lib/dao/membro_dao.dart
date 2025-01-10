@@ -5,27 +5,27 @@ class MembroDao {
   static const String nomeTabela = "membros";
   static const String id = "id";
   static const String nome = "nome";
-  static const String nomePai = "nome_pai";
-  static const String nomeMae = "nome_mae";
-  static const String dataNascimento = "data_nascimento";
-  static const String dataBatismo = "data_batismo";
-  static const String membroDesde = "membro_desde";
-  static const String membroStatus = "membro_status";
+  static const String nomePai = "nomePai";
+  static const String nomeMae = "nomeMae";
+  static const String dataNascimento = "dataNascimento";
+  static const String dataBatismo = "dataBatismo";
+  static const String membroDesde = "membroDesde";
+  static const String membroStatus = "membroStatus";
   static const String cargo = "cargo";
   static const String profissao = "profissao";
   static const String endereco = "endereco";
-  static const String numeroCasa = "numero_casa";
+  static const String numeroCasa = "numeroCasa";
   static const String bairro = "bairro";
   static const String cidade = "cidade";
   static const String estado = "estado";
   static const String observacao = "observacao";
   static const String telefone = "telefone";
-  static const String estadoCivil = "estado_civil";
+  static const String estadoCivil = "estadoCivil";
   static const String naturalidade = "naturalidade";
   static const String nacionalidade = "nacionalidade";
   static const String conjuge = "conjuge";
-  static const String numeroFilhos = "numero_filhos";
-  static const String igrejaProcedencia = "igreja_procedencia";
+  static const String numeroFilhos = "numeroFilhos";
+  static const String igrejaProcedencia = "igrejaProcedencia";
 
   static const String tabelaSql = "CREATE TABLE IF NOT EXISTS $nomeTabela ("
       "$id INTEGER PRIMARY KEY, "

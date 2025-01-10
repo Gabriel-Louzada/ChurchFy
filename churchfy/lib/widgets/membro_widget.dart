@@ -1,32 +1,32 @@
+import 'package:churchfy/models/membro_model.dart';
 import 'package:flutter/material.dart';
 
-class MembroWidget extends StatelessWidget {
-  final String nome;
-  final String cargo;
-  final String telefone;
+class MembroWidget extends StatefulWidget {
+  final MembroModel membro;
 
-  const MembroWidget(
-      {super.key,
-      required this.nome,
-      required this.cargo,
-      required this.telefone});
+  const MembroWidget({super.key, required this.membro});
 
   @override
+  State<MembroWidget> createState() => _MembroWidgetState();
+}
+
+class _MembroWidgetState extends State<MembroWidget> {
+  @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.person),
-      title: Text(nome),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(cargo),
-          Text(telefone),
-        ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        surfaceTintColor: const Color.fromARGB(255, 77, 111, 129),
+        elevation: 4,
+        child: ListTile(
+          onTap: () {},
+          leading: const Icon(Icons.verified_user),
+          title: Text(widget.membro.nome),
+          subtitle: Text("Cargo: ${widget.membro.cargo}"),
+          trailing: IconButton(
+              onPressed: () {}, icon: const Icon(Icons.person_remove_alt_1)),
+        ),
       ),
-      trailing: const Icon(Icons.more_vert),
-      onTap: () {
-        // Ação ao clicar no ListTile
-      },
     );
   }
 }
