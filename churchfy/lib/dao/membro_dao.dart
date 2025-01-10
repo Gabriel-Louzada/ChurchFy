@@ -100,7 +100,7 @@ class MembroDao {
       membro.bairro,
       membro.cidade,
       membro.estado,
-      membro.obersevacao,
+      membro.observacao,
       membro.telefone,
       membro.estadoCivil,
       membro.naturalidade,
@@ -113,12 +113,46 @@ class MembroDao {
 
   // FUNÇÃO PARA OBTER TODOS OS MEMBROS DO BANCO DE DADOS
   List<MembroModel> selectMembros() {
-    final resultados = abrirBd().select('SELECT * FROM $nomeTabela');
-    List<MembroModel> membros =
-        resultados.map((map) => MembroModel.fromMap(map)).toList();
-    print("Aqui esta o print dos membros cadastrados no banco de dados");
-    print(membros);
-    return membros;
+    final resultados = abrirBd().select('''SELECT 
+    $id,
+    $nome,
+    $nomePai,
+    $nomeMae,
+    $dataNascimento,
+    $dataBatismo,
+    $membroDesde,
+    $membroStatus,
+    $cargo,
+    $profissao,
+    $endereco,
+    $numeroCasa,
+    $bairro,
+    $cidade,
+    $estado,
+    $observacao,
+    $telefone,
+    $estadoCivil,
+    $naturalidade,
+    $nacionalidade,
+    $conjuge,
+    $numeroFilhos,
+    $igrejaProcedencia FROM $nomeTabela''');
+    if (resultados.isNotEmpty) {
+      print("\n\n\nRetorno direto do banco de dados: \n\n\n\n");
+      print(resultados);
+      print('\n\n\n');
+      List<MembroModel> membros =
+          resultados.map((map) => MembroModel.fromMap(map)).toList();
+      print('\n\n\n');
+      print(
+          "====================== Membros Cadastrados =============================");
+      print('\n\n\n');
+      print(membros);
+      return membros;
+    } else {
+      print("Error não existem usuarios cadastrados ");
+      return [];
+    }
   }
 
   // FUNÇÃO PARA OBTER UM MEMBRO PELO ID
@@ -163,7 +197,7 @@ class MembroDao {
       membro.bairro,
       membro.cidade,
       membro.estado,
-      membro.obersevacao,
+      membro.observacao,
       membro.telefone,
       membro.estadoCivil,
       membro.naturalidade,
