@@ -5,35 +5,37 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class TelaCadastro extends StatefulWidget {
-  const TelaCadastro({super.key});
+class AlterarCadastro extends StatefulWidget {
+  final BuildContext membroContext;
+  final MembroModel membro;
+
+  const AlterarCadastro(
+      {super.key, required this.membro, required this.membroContext});
 
   @override
-  State<TelaCadastro> createState() => _TelaCadastroState();
+  State<AlterarCadastro> createState() => _AlterarCadastroState();
 }
 
-class _TelaCadastroState extends State<TelaCadastro> {
-  final TextEditingController _nomeController = TextEditingController();
-  final TextEditingController _nomePaiController = TextEditingController();
-  final TextEditingController _nomeMaeController = TextEditingController();
-  final TextEditingController _nascimentoController = TextEditingController();
-  final TextEditingController _batismoController = TextEditingController();
-  final TextEditingController _membroDesdeController = TextEditingController();
-  final TextEditingController _profissaoController = TextEditingController();
-  final TextEditingController _enderecoController = TextEditingController();
-  final TextEditingController _numeroCasaController = TextEditingController();
-  final TextEditingController _bairroController = TextEditingController();
-  final TextEditingController _cidadeController = TextEditingController();
-  final TextEditingController _estadoController = TextEditingController();
-  final TextEditingController _telefoneController = TextEditingController();
-  final TextEditingController _naturalidadeController = TextEditingController();
-  final TextEditingController _nacionalidadeController =
-      TextEditingController();
-  final TextEditingController _conjugeController = TextEditingController();
-  final TextEditingController _numeroFilhosController = TextEditingController();
-  final TextEditingController _igrejaProcedenciaController =
-      TextEditingController();
-  final TextEditingController _observacaoController = TextEditingController();
+class _AlterarCadastroState extends State<AlterarCadastro> {
+  TextEditingController _nomeController = TextEditingController();
+  TextEditingController _nomePaiController = TextEditingController();
+  TextEditingController _nomeMaeController = TextEditingController();
+  TextEditingController _nascimentoController = TextEditingController();
+  TextEditingController _batismoController = TextEditingController();
+  TextEditingController _membroDesdeController = TextEditingController();
+  TextEditingController _profissaoController = TextEditingController();
+  TextEditingController _enderecoController = TextEditingController();
+  TextEditingController _numeroCasaController = TextEditingController();
+  TextEditingController _bairroController = TextEditingController();
+  TextEditingController _cidadeController = TextEditingController();
+  TextEditingController _estadoController = TextEditingController();
+  TextEditingController _telefoneController = TextEditingController();
+  TextEditingController _naturalidadeController = TextEditingController();
+  TextEditingController _nacionalidadeController = TextEditingController();
+  TextEditingController _conjugeController = TextEditingController();
+  TextEditingController _numeroFilhosController = TextEditingController();
+  TextEditingController _igrejaProcedenciaController = TextEditingController();
+  TextEditingController _observacaoController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -69,9 +71,68 @@ class _TelaCadastroState extends State<TelaCadastro> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _nomeController = TextEditingController(text: widget.membro.nome);
+    _nomePaiController = TextEditingController(text: widget.membro.nomePai);
+    _nomeMaeController = TextEditingController(text: widget.membro.nomeMae);
+    _nascimentoController =
+        TextEditingController(text: widget.membro.dataNascimento);
+    _batismoController = TextEditingController(text: widget.membro.dataBatismo);
+    _membroDesdeController =
+        TextEditingController(text: widget.membro.membroDesde);
+    _profissaoController = TextEditingController(text: widget.membro.profissao);
+    _enderecoController = TextEditingController(text: widget.membro.endereco);
+    _numeroCasaController =
+        TextEditingController(text: widget.membro.numeroCasa);
+    _bairroController = TextEditingController(text: widget.membro.bairro);
+    _cidadeController = TextEditingController(text: widget.membro.cidade);
+    _estadoController = TextEditingController(text: widget.membro.estado);
+    _telefoneController = TextEditingController(text: widget.membro.telefone);
+    _naturalidadeController =
+        TextEditingController(text: widget.membro.naturalidade);
+    _nacionalidadeController =
+        TextEditingController(text: widget.membro.nacionalidade);
+    _conjugeController = TextEditingController(text: widget.membro.conjuge);
+    _numeroFilhosController =
+        TextEditingController(text: widget.membro.numeroFilhos.toString());
+    _igrejaProcedenciaController =
+        TextEditingController(text: widget.membro.igrejaProcedencia);
+    _observacaoController =
+        TextEditingController(text: widget.membro.observacao);
+  }
+
+  @override
+  void dispose() {
+    _nomeController.dispose();
+    _nomePaiController.dispose();
+    _nomeMaeController.dispose();
+    _nascimentoController.dispose();
+    _batismoController.dispose();
+    _membroDesdeController.dispose();
+    _profissaoController.dispose();
+    _enderecoController.dispose();
+    _numeroCasaController.dispose();
+    _bairroController.dispose();
+    _cidadeController.dispose();
+    _estadoController.dispose();
+    _telefoneController.dispose();
+    _naturalidadeController.dispose();
+    _nacionalidadeController.dispose();
+    _conjugeController.dispose();
+    _numeroFilhosController.dispose();
+    _igrejaProcedenciaController.dispose();
+    _observacaoController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final size = mediaQuery.size;
+
+    _selectCargo = widget.membro.cargo;
+    _selectEstadoCivil = widget.membro.estadoCivil;
 
     return Scaffold(
       appBar: AppBar(
@@ -86,9 +147,9 @@ class _TelaCadastroState extends State<TelaCadastro> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  const Text(
-                    "Esses são todos os campos necessarios para realizar o cadastro de um Membro",
-                    style: TextStyle(fontSize: 25),
+                  Text(
+                    "Alterando o cadastro ${widget.membro.nome}",
+                    style: const TextStyle(fontSize: 25),
                   ),
                   const SizedBox(height: 10),
                   //NOME MEMBRO
@@ -551,6 +612,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
                       final observacao = _observacaoController.text.trim();
 
                       MembroModel membro = MembroModel(
+                          id: widget.membro.id,
                           nome: nome,
                           nomePai: nomePai,
                           nomeMae: nomeMae,
@@ -574,12 +636,12 @@ class _TelaCadastroState extends State<TelaCadastro> {
                           igrejaProcedencia: igrejaProcedencia);
 
                       Provider.of<MembroProvider>(context, listen: false)
-                          .adicionarMembro(membro);
+                          .atualizarMembro(membro);
 
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      'Cadastrar',
+                      'Alterar',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),

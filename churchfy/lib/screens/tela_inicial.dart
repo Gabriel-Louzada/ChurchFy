@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import 'package:churchfy/dao/membro_dao.dart';
 import 'package:churchfy/models/membro_model.dart';
-=======
->>>>>>> 841d533b22015bc92181c13ccd7cc9e71b2e2c0e
 import 'package:churchfy/provider/membro_provider.dart';
 import 'package:churchfy/screens/tela_cadastro.dart';
 import 'package:churchfy/widgets/membro_widget.dart';
@@ -35,7 +32,6 @@ class _TelaInicialState extends State<TelaInicial> {
         backgroundColor: Colors.amber,
         title: const Text('Tela Inicial'),
       ),
-<<<<<<< HEAD
       body: Consumer<MembroProvider>(builder: (context, provider, child) {
         return ListView.builder(
             itemCount: provider.membros.length + 1,
@@ -48,21 +44,6 @@ class _TelaInicialState extends State<TelaInicial> {
               }
             });
       }),
-=======
-      body: Center(
-        child: Column(
-          children: [
-            const Text('Bem-vindo à Tela Inicial!'),
-            ElevatedButton(
-                onPressed: () {
-                  Provider.of<MembroProvider>(context, listen: false)
-                      .carregarMembros();
-                },
-                child: const Text("Clique aqui"))
-          ],
-        ),
-      ),
->>>>>>> 841d533b22015bc92181c13ccd7cc9e71b2e2c0e
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {

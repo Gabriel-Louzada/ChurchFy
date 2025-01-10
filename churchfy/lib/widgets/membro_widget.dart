@@ -1,4 +1,5 @@
 import 'package:churchfy/models/membro_model.dart';
+import 'package:churchfy/screens/tela_alteracao.dart';
 import 'package:flutter/material.dart';
 
 class MembroWidget extends StatefulWidget {
@@ -19,8 +20,14 @@ class _MembroWidgetState extends State<MembroWidget> {
         surfaceTintColor: const Color.fromARGB(255, 77, 111, 129),
         elevation: 4,
         child: ListTile(
-          onTap: () {},
-          leading: const Icon(Icons.verified_user),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (contextNew) => AlterarCadastro(
+                        membro: widget.membro, membroContext: contextNew)));
+          },
+          leading: const Icon(Icons.person),
           title: Text(widget.membro.nome),
           subtitle: Text("Cargo: ${widget.membro.cargo}"),
           trailing: IconButton(

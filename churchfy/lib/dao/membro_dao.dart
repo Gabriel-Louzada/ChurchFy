@@ -138,19 +138,10 @@ class MembroDao {
     $numeroFilhos,
     $igrejaProcedencia FROM $nomeTabela''');
     if (resultados.isNotEmpty) {
-      print("\n\n\nRetorno direto do banco de dados: \n\n\n\n");
-      print(resultados);
-      print('\n\n\n');
       List<MembroModel> membros =
           resultados.map((map) => MembroModel.fromMap(map)).toList();
-      print('\n\n\n');
-      print(
-          "====================== Membros Cadastrados =============================");
-      print('\n\n\n');
-      print(membros);
       return membros;
     } else {
-      print("Error não existem usuarios cadastrados ");
       return [];
     }
   }

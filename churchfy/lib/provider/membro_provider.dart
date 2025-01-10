@@ -13,14 +13,11 @@ class MembroProvider extends ChangeNotifier {
 
   void adicionarMembro(MembroModel membro) {
     MembroDao().insertMembro(membro);
-    print("Adicionando o membro");
-    print(membro);
     carregarMembros();
   }
 
   void atualizarMembro(MembroModel membro) {
     MembroDao().atualizarMembro(membro);
-    print("Atualizando o membro: ${membro.nome}");
     carregarMembros();
   }
 
