@@ -4,16 +4,16 @@ import 'package:churchfy/screens/tela_alteracao.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MembroWidget extends StatefulWidget {
+class MembroInativoWidget extends StatefulWidget {
   final MembroModel membro;
 
-  const MembroWidget({super.key, required this.membro});
+  const MembroInativoWidget({super.key, required this.membro});
 
   @override
-  State<MembroWidget> createState() => _MembroWidgetState();
+  State<MembroInativoWidget> createState() => _MembroWidgetState();
 }
 
-class _MembroWidgetState extends State<MembroWidget> {
+class _MembroWidgetState extends State<MembroInativoWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,9 +36,9 @@ class _MembroWidgetState extends State<MembroWidget> {
           trailing: IconButton(
               onPressed: () {
                 Provider.of<MembroProvider>(context, listen: false)
-                    .inativarMembro(widget.membro.id!);
+                    .ativarMembro(widget.membro.id!);
               },
-              icon: const Icon(Icons.person_remove_alt_1)),
+              icon: const Icon(Icons.person_add_alt_1)),
         ),
       ),
     );

@@ -13,6 +13,7 @@ class TelaCadastro extends StatefulWidget {
 }
 
 class _TelaCadastroState extends State<TelaCadastro> {
+  bool isAtivo = true;
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _nomePaiController = TextEditingController();
   final TextEditingController _nomeMaeController = TextEditingController();
@@ -68,10 +69,26 @@ class _TelaCadastroState extends State<TelaCadastro> {
     }
   }
 
+  String validaAtivo(bool isAtivo) {
+    if (isAtivo) {
+      return "ativo";
+    } else {
+      return 'inativo';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final size = mediaQuery.size;
+
+    const WidgetStateProperty<Icon> thumbIcon =
+        WidgetStateProperty<Icon>.fromMap(
+      <WidgetStatesConstraint, Icon>{
+        WidgetState.selected: Icon(Icons.check),
+        WidgetState.any: Icon(Icons.close),
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -86,10 +103,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  const Text(
-                    "Esses são todos os campos necessarios para realizar o cadastro de um Membro",
-                    style: TextStyle(fontSize: 25),
-                  ),
                   const SizedBox(height: 10),
                   //NOME MEMBRO
                   TextFormField(
@@ -105,7 +118,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
                     decoration: const InputDecoration(
                         label: Text("Nome:"), border: OutlineInputBorder()),
                   ),
-                  const SizedBox(height: 10),
                   //DATA NASCIMENTO
                   Row(
                     children: [
@@ -524,64 +536,90 @@ class _TelaCadastroState extends State<TelaCadastro> {
                         border: OutlineInputBorder()),
                   ),
                   const SizedBox(height: 10),
-                  ElevatedButton(
-                    onPressed: () {
-                      final nome = _nomeController.text.trim();
-                      final nacimento = _nascimentoController.text.trim();
-                      final batismo = _batismoController.text.trim();
-                      final membroDesde = _membroDesdeController.text.trim();
-                      final cargo = _selectCargo!;
-                      final profissao = _profissaoController.text.trim();
-                      final endereco = _enderecoController.text.trim();
-                      final numeroCasa = _numeroCasaController.text.trim();
-                      final bairro = _bairroController.text.trim();
-                      final cidade = _cidadeController.text.trim();
-                      final estado = _estadoController.text.trim();
-                      final telefone = _telefoneController.text.trim();
-                      final estadoCivil = _selectEstadoCivil!;
-                      final naturalidade = _naturalidadeController.text.trim();
-                      final nacionalidade =
-                          _nacionalidadeController.text.trim();
-                      final conjuge = _conjugeController.text.trim();
-                      final numeroFilhos = _numeroFilhosController.text.trim();
-                      final igrejaProcedencia =
-                          _igrejaProcedenciaController.text.trim();
-                      final nomePai = _nomePaiController.text.trim();
-                      final nomeMae = _nomeMaeController.text.trim();
-                      final observacao = _observacaoController.text.trim();
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "Membro Ativo",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Switch(
+                              thumbIcon: thumbIcon,
+                              value: isAtivo,
+                              onChanged: (bool value) {
+                                setState(() {
+                                  isAtivo = value;
+                                });
+                              }),
+                        ],
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          final nome = _nomeController.text.trim();
+                          final nacimento = _nascimentoController.text.trim();
+                          final batismo = _batismoController.text.trim();
+                          final membroDesde =
+                              _membroDesdeController.text.trim();
+                          final cargo = _selectCargo!;
+                          final ativo = validaAtivo(isAtivo);
+                          final profissao = _profissaoController.text.trim();
+                          final endereco = _enderecoController.text.trim();
+                          final numeroCasa = _numeroCasaController.text.trim();
+                          final bairro = _bairroController.text.trim();
+                          final cidade = _cidadeController.text.trim();
+                          final estado = _estadoController.text.trim();
+                          final telefone = _telefoneController.text.trim();
+                          final estadoCivil = _selectEstadoCivil!;
+                          final naturalidade =
+                              _naturalidadeController.text.trim();
+                          final nacionalidade =
+                              _nacionalidadeController.text.trim();
+                          final conjuge = _conjugeController.text.trim();
+                          final numeroFilhos =
+                              _numeroFilhosController.text.trim();
+                          final igrejaProcedencia =
+                              _igrejaProcedenciaController.text.trim();
+                          final nomePai = _nomePaiController.text.trim();
+                          final nomeMae = _nomeMaeController.text.trim();
+                          final observacao = _observacaoController.text.trim();
 
-                      MembroModel membro = MembroModel(
-                          nome: nome,
-                          nomePai: nomePai,
-                          nomeMae: nomeMae,
-                          dataNascimento: nacimento,
-                          dataBatismo: batismo,
-                          membroDesde: membroDesde,
-                          cargo: cargo,
-                          profissao: profissao,
-                          endereco: endereco,
-                          numeroCasa: numeroCasa,
-                          bairro: bairro,
-                          cidade: cidade,
-                          estado: estado,
-                          telefone: telefone,
-                          estadoCivil: estadoCivil,
-                          naturalidade: naturalidade,
-                          conjuge: conjuge,
-                          nacionalidade: nacionalidade,
-                          numeroFilhos: int.parse(numeroFilhos),
-                          observacao: observacao,
-                          igrejaProcedencia: igrejaProcedencia);
+                          MembroModel membro = MembroModel(
+                              nome: nome,
+                              nomePai: nomePai,
+                              nomeMae: nomeMae,
+                              dataNascimento: nacimento,
+                              dataBatismo: batismo,
+                              membroDesde: membroDesde,
+                              membroStatus: ativo,
+                              cargo: cargo,
+                              profissao: profissao,
+                              endereco: endereco,
+                              numeroCasa: numeroCasa,
+                              bairro: bairro,
+                              cidade: cidade,
+                              estado: estado,
+                              telefone: telefone,
+                              estadoCivil: estadoCivil,
+                              naturalidade: naturalidade,
+                              conjuge: conjuge,
+                              nacionalidade: nacionalidade,
+                              numeroFilhos: int.parse(numeroFilhos),
+                              observacao: observacao,
+                              igrejaProcedencia: igrejaProcedencia);
 
-                      Provider.of<MembroProvider>(context, listen: false)
-                          .adicionarMembro(membro);
+                          Provider.of<MembroProvider>(context, listen: false)
+                              .adicionarMembro(membro);
 
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      'Cadastrar',
-                      style: TextStyle(fontSize: 20),
-                    ),
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'Cadastrar',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 10),
                 ],

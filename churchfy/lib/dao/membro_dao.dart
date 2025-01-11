@@ -85,7 +85,7 @@ class MembroDao {
           $conjuge, 
           $numeroFilhos, 
           $igrejaProcedencia
-        ) VALUES (?,?,?,?,?,?,"ativo",?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
      ''', [
       membro.nome,
       membro.nomePai,
@@ -93,6 +93,7 @@ class MembroDao {
       membro.dataNascimento,
       membro.dataBatismo,
       membro.membroDesde,
+      membro.membroStatus,
       membro.cargo,
       membro.profissao,
       membro.endereco,
@@ -136,7 +137,41 @@ class MembroDao {
     $nacionalidade,
     $conjuge,
     $numeroFilhos,
-    $igrejaProcedencia FROM $nomeTabela''');
+    $igrejaProcedencia FROM $nomeTabela WHERE $membroStatus = "ativo" ORDER BY $nome''');
+    if (resultados.isNotEmpty) {
+      List<MembroModel> membros =
+          resultados.map((map) => MembroModel.fromMap(map)).toList();
+      return membros;
+    } else {
+      return [];
+    }
+  }
+
+  List<MembroModel> selectMembrosInativos() {
+    final resultados = abrirBd().select('''SELECT 
+    $id,
+    $nome,
+    $nomePai,
+    $nomeMae,
+    $dataNascimento,
+    $dataBatismo,
+    $membroDesde,
+    $membroStatus,
+    $cargo,
+    $profissao,
+    $endereco,
+    $numeroCasa,
+    $bairro,
+    $cidade,
+    $estado,
+    $observacao,
+    $telefone,
+    $estadoCivil,
+    $naturalidade,
+    $nacionalidade,
+    $conjuge,
+    $numeroFilhos,
+    $igrejaProcedencia FROM $nomeTabela WHERE $membroStatus = "inativo" ORDER BY $nome''');
     if (resultados.isNotEmpty) {
       List<MembroModel> membros =
           resultados.map((map) => MembroModel.fromMap(map)).toList();
@@ -205,5 +240,19 @@ class MembroDao {
     abrirBd().execute('''
     DELETE FROM $nomeTabela WHERE $id = ? 
     ''', [id]);
+  }
+
+// FUNÇÃO PARA INATIVAR UM MEMBRO PELO ID
+  void inativarMembro(int idMembro) {
+    abrirBd().execute(
+        '''UPDATE $nomeTabela SET $membroStatus = "inativo" WHERE $id = ? ''',
+        [idMembro]);
+  }
+
+  // FUNÇÃO PARA INATIVAR UM MEMBRO PELO ID
+  void ativarMembro(int idMembro) {
+    abrirBd().execute(
+        '''UPDATE $nomeTabela SET $membroStatus = "ativo" WHERE $id = ? ''',
+        [idMembro]);
   }
 }
