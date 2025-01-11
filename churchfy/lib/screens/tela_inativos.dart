@@ -27,7 +27,7 @@ class _TelaInativosState extends State<TelaInativos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.amberAccent,
         title: const Text('Membros Inativos'),
       ),
       body: Consumer<MembroProvider>(builder: (context, provider, child) {

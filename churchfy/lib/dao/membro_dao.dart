@@ -22,7 +22,7 @@ class MembroDao {
   static const String telefone = "telefone";
   static const String estadoCivil = "estadoCivil";
   static const String naturalidade = "naturalidade";
-  static const String nacionalidade = "nacionalidade";
+  static const String nacionalidade = "nascionalidade";
   static const String conjuge = "conjuge";
   static const String numeroFilhos = "numeroFilhos";
   static const String igrejaProcedencia = "igrejaProcedencia";

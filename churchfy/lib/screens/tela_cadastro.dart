@@ -92,7 +92,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.amberAccent,
         title: const Text('Cadastro'),
       ),
       body: Form(

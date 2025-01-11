@@ -31,7 +31,7 @@ class _TelaInicialState extends State<TelaInicial> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.amberAccent,
         title: const Text('Tela Inicial'),
         actions: [
           IconButton(
@@ -47,7 +47,7 @@ class _TelaInicialState extends State<TelaInicial> {
           padding: EdgeInsets.zero,
           children: [
             const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.amber),
+              decoration: BoxDecoration(color: Colors.amberAccent),
               child: Text(
                 "Churchfy",
                 style: TextStyle(fontSize: 22),

@@ -1,4 +1,7 @@
+import 'package:churchfy/provider/membro_provider.dart';
+import 'package:churchfy/widgets/membro_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchBarDelegate extends SearchDelegate<String> {
   @override
@@ -18,34 +21,51 @@ class SearchBarDelegate extends SearchDelegate<String> {
     return IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        Navigator.pop(context);
+        close(context, '');
       },
     );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    return Center(
-      child: Text('Resultado da pesquisa: $query'),
+    return Consumer<MembroProvider>(
+      builder: (context, provider, child) {
+        final results = provider.membros
+            .where((membro) =>
+                membro.nome.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+
+        return ListView.builder(
+          itemCount: results.length,
+          itemBuilder: (context, index) {
+            return MembroWidget(membro: results[index]);
+          },
+        );
+      },
     );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestions = query.isEmpty
-        ? []
-        : ['Sugestão 1', 'Sugestão 2', 'Sugestão 3']
-            .where((s) => s.startsWith(query))
-            .toList();
+    return Consumer<MembroProvider>(
+      builder: (context, provider, child) {
+        final suggestions = query.isEmpty
+            ? provider.membros
+            : provider.membros
+                .where((membro) =>
+                    membro.nome.toLowerCase().contains(query.toLowerCase()))
+                .toList();
 
-    return ListView.builder(
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(suggestions[index]),
-          onTap: () {
-            query = suggestions[index];
-            showResults(context);
+        return ListView.builder(
+          itemCount: suggestions.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: Text(suggestions[index].nome),
+              onTap: () {
+                query = suggestions[index].nome;
+                showResults(context);
+              },
+            );
           },
         );
       },

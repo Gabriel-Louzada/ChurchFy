@@ -96,7 +96,7 @@ class MembroModel {
       telefone: map['telefone'],
       estadoCivil: map['estadoCivil'],
       naturalidade: map['naturalidade'],
-      nacionalidade: map['nacionalidade'],
+      nacionalidade: map['nascionalidade'],
       conjuge: map['conjuge'],
       numeroFilhos: map['numeroFilhos'],
       igrejaProcedencia: map['igrejaProcedencia'],

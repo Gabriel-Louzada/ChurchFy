@@ -32,7 +32,7 @@ class _MembroWidgetState extends State<MembroWidget> {
           leading: const Icon(Icons.person),
           title: Text(widget.membro.nome),
           subtitle: Text(
-              "Cargo: ${widget.membro.cargo}  -  Ativo: ${widget.membro.membroStatus}"),
+              "Cargo: ${widget.membro.cargo}  -  Data Nascimento: ${widget.membro.dataNascimento}"),
           trailing: IconButton(
               onPressed: () {
                 Provider.of<MembroProvider>(context, listen: false)

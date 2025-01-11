@@ -163,8 +163,8 @@ class _AlterarCadastroState extends State<AlterarCadastro> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
-        title: const Text('Cadastro'),
+        backgroundColor: Colors.amberAccent,
+        title: const Text('Alterar'),
       ),
       body: Form(
         key: _formKey,
